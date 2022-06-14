@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh 'whoami'
                 echo 'clone the repo'
-                sh 'rm -fr html'
+                sh 'rm -fr webapp1'
                 sh 'git clone https://github.com/shaybenjamin/webapp1.git'
             }
         }
