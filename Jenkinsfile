@@ -13,8 +13,10 @@ pipeline {
             steps {
                 sh 'sudo su ec2-user'
                 sh 'whoami'
+                sh 'PWD'
                 echo 'connect to remote host and pull down the latest version'
-                sh 'ssh ec2-user@10.0.1.139 sudo git -C /var/www/html pull'
+                sh 'ssh ec2-user@10.0.1.139 sudo touch /var/www/html/index_pipe.html'
+                //sh 'ssh ec2-user@10.0.1.139 sudo git -C /var/www/html pull'
             }
         }
         stage('Check website is up') {
