@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Clone the repo') {
             steps {
+                sh 'whoami'
                 echo 'clone the repo'
                 sh 'rm -fr html'
                 sh 'git clone https://github.com/shaybenjamin/webapp1.git'
