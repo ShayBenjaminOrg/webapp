@@ -1,28 +1,36 @@
 pipeline {
-    agent { node { label 'linux' } }
+    agent any 
+    
+    options { 
+        timestamps()
+    }
+    environment {
+        PlayGround = "${env.WORKSPACE}/playground/${env.BUILD_NUMBER}"
+    }
+    
     stages {
         stage('Clone the repo') {
             steps {
-                sh 'whoami'
-                echo 'clone the repo'
-                sh 'rm -fr webapp1'
-                sh 'git clone https://github.com/shaybenjamin/webapp1.git'
-            }
-        }
-        stage('push repo to remote host') {
-            steps {
-                //sh 'sudo su ec2-user'
-                sh 'whoami'
-                sh 'pwd'
-                echo 'connect to remote host and pull down the latest version'
-                sh 'ssh ec2-user@10.0.1.197 touch /var/www/html/index_pipe.html'
-                //sh 'ssh ec2-user@10.0.1.139 sudo git -C /var/www/html pull'
-            }
-        }
-        stage('Check website is up') {
-            steps {
-                echo 'Check website is up'
-                sh 'curl -Is 10.0.1.197 | head -n 1'
+                ansiColor('xterm'){
+                    echo 'WORKSPACE : env.WORKSPACE'
+                    echo "PlayGround : '$PlayGround'"
+                    echo "BUILD_NUMBER : '$BUILD_NUMBER'"
+                    echo "BUILD_ID : '$BUILD_ID'"
+                    echo "BUILD_DISPLAY_NAME : '${BUILD_DISPLAY_NAME}'"
+                    echo "JOB_NAME : '${JOB_NAME}'"
+                    echo "JOB_BASE_NAME : '${JOB_BASE_NAME}'"
+                    echo "BUILD_TAG : '${BUILD_TAG}'"
+                    echo "EXECUTOR_NUMBER : '${EXECUTOR_NUMBER}'"
+                    echo "NODE_NAME : '${NODE_NAME}'"
+                    echo "NODE_LABELS : '${NODE_LABELS}'"
+                    echo "WORKSPACE : '${WORKSPACE}'"
+                    echo "JENKINS_HOME : '${JENKINS_HOME}'"
+                    sh 'printenv'
+                    sh 'whoami'
+                    sh "mkdir -p '$PlayGround'"
+                    sh "cd '$PlayGround'"
+                    echo 'clone the app repo'
+                }
             }
         }
     }
