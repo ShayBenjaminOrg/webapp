@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Clone the repo') {
             steps {
-                ansiColor('xterm'){
+                //ansiColor('xterm'){
                     echo 'WORKSPACE : env.WORKSPACE'
                     echo "PlayGround : '$PlayGround'"
                     echo "BUILD_NUMBER : '$BUILD_NUMBER'"
@@ -30,7 +30,7 @@ pipeline {
                     sh "mkdir -p '$PlayGround'"
                     sh "cd '$PlayGround'"
                     echo 'clone the app repo'
-                }
+              //  }
             }
         }
     }
