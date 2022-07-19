@@ -12,7 +12,9 @@ pipeline {
         stage('Clone the repo') {
             steps {
                 //ansiColor('xterm'){
-                    echo 'WORKSPACE : env.WORKSPACE'
+                    
+                echo 'GIT_COMMIT : $GIT_COMMIT'
+                echo 'GIT_BRANCH : $GIT_BRANCH'
                     echo "PlayGround : '$PlayGround'"
                     echo "BUILD_NUMBER : '$BUILD_NUMBER'"
                     echo "BUILD_ID : '$BUILD_ID'"
@@ -25,7 +27,7 @@ pipeline {
                     echo "NODE_LABELS : '${NODE_LABELS}'"
                     echo "WORKSPACE : '${WORKSPACE}'"
                     echo "JENKINS_HOME : '${JENKINS_HOME}'"
-                    sh 'printenv'
+                    sh 'printenv | grep GIT'
                     sh 'whoami'
                     sh "mkdir -p '$PlayGround'"
                     sh "cd '$PlayGround'"
