@@ -13,8 +13,8 @@ pipeline {
             steps {
                 //ansiColor('xterm'){
                     
-                echo 'GIT_COMMIT : $GIT_COMMIT'
-                echo 'GIT_BRANCH : $GIT_BRANCH'
+                echo "GIT_COMMIT : '$GIT_COMMIT'"
+                echo "'GIT_BRANCH : '$GIT_BRANCH'"
                     echo "PlayGround : '$PlayGround'"
                     echo "BUILD_NUMBER : '$BUILD_NUMBER'"
                     echo "BUILD_ID : '$BUILD_ID'"
